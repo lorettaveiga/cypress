@@ -1,19 +1,21 @@
-describe('Sorted List Test', () => {
-    beforeEach(() => {
-      cy.visit('https://thelab.boozang.com/sortedList');
-    });
-  
-    it('should add items to the list and delete them', () => {
-      // Add first item
-      cy.get('input[type="text"]').type('First Item');
-      cy.get('.form_btn.add').click();
-  
-      // Add second item
-      cy.get('input[type="text"]').type('Second Item');
-      cy.get('.form_btn.add').click();
-  
-      // Delete items using trash icons
-      cy.get('.fas.fa-trash-alt.delete_icon').first().click();
-      cy.get('.fas.fa-trash-alt.delete_icon').first().click();
-    });
-  }); 
+describe('Lista Ordenada', () => {
+
+  beforeEach(() => {
+    cy.visit('https://thelab.boozang.com/sortedList');
+  });
+
+  it('agrega elementos a la lista y luego los elimina', () => {
+    // Inserta el primer elemento en la lista
+    cy.get('input[type="text"]').type('Primer Elemento');
+    cy.get('.form_btn.add').click();
+
+    // Inserta el segundo elemento
+    cy.get('input[type="text"]').type('Segundo Elemento');
+    cy.get('.form_btn.add').click();
+
+    // Elimina los elementos con el ícono de basurero
+    cy.get('.fas.fa-trash-alt.delete_icon').first().click();
+    cy.get('.fas.fa-trash-alt.delete_icon').first().click();
+  });
+
+});

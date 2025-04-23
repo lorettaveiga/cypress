@@ -1,18 +1,20 @@
-describe('Speed Game Test', () => {
-    beforeEach(() => {
-      cy.visit('https://thelab.boozang.com/waitGame');
-    });
-  
-    it('should test reaction time by clicking the end game button in 5 seconds', () => {
-      // Click the Start Game button
-      cy.get('[data-testid="startBtn"]').click();
+describe('Juego de Espera', () => {
 
-  
-      // Wait exactly 5 seconds before clicking the button
-      cy.wait(5000);
-      cy.get('.form_btn.delete', { timeout: 12000 })
-        .should('be.visible')
-        .click();
-  
-    });
+  beforeEach(() => {
+    cy.visit('https://thelab.boozang.com/waitGame');
   });
+
+  it('espera 5 segundos antes de presionar el botón de finalizar', () => {
+    // Comienza el juego haciendo clic en el botón de inicio
+    cy.get('[data-testid="startBtn"]').click();
+
+    // Espera exactamente 5 segundos antes de continuar
+    cy.wait(5000);
+
+    // Localiza y presiona el botón de finalizar
+    cy.get('.form_btn.delete', { timeout: 12000 })
+      .should('be.visible')
+      .click();
+  });
+
+});

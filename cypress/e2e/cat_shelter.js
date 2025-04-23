@@ -1,41 +1,43 @@
-describe('Cat Shelter Test', () => {
-    beforeEach(() => {
-      cy.visit('https://thelab.boozang.com/catShelter');
-    });
+describe('Pruebas de Refugio de Gatos', () => {
   
-    it('should add a cat to the shelter', () => {
-      // Click the Add Cat link button
-      cy.get('.link_btn.add').click();
-  
-      // Fill out the cat details
-      cy.get('input[name="name"]').type('Whiskers');
-      cy.get('textarea[name="description"]').type('A friendly cat who loves to play');
-      
-      // Select "Wants to go outside" radio button
-      cy.get('input[name="inOrOutside"][value="outside"]').click();
-  
-      // Click the Add Cat button
-      cy.get('.form_btn.add').click();
-    });
-  
-    it('should edit the cat name', () => {
-      // Click the paw icon to edit the cat
-      cy.get('.fas.fa-paw').first().click();
-  
-      // Clear the existing name and type a new one
-      cy.get('input[name="name"].name')
-        .clear()
-        .type('Mittens');
-  
-      // Click the Save button
-      cy.get('.form_btn.add').contains('Save').click();
-    });
-  
-    it('should delete the cat', () => {
-      // Click the paw icon to edit the cat
-      cy.get('.fas.fa-paw').first().click();
-  
-      // Click the Delete button
-      cy.get('.form_btn.delete').click();
-    });
-  }); 
+  beforeEach(() => {
+    cy.visit('https://thelab.boozang.com/catShelter');
+  });
+
+  it('agrega un nuevo gato al refugio', () => {
+    // Abre el formulario para añadir un gato
+    cy.get('.link_btn.add').click();
+
+    // Rellena los campos del formulario
+    cy.get('input[name="name"]').type('Whiskers');
+    cy.get('textarea[name="description"]').type('Un gato amigable que adora jugar');
+
+    // Selecciona la opción para gatos que desean salir
+    cy.get('input[name="inOrOutside"][value="outside"]').check();
+
+    // Envía el formulario
+    cy.get('.form_btn.add').click();
+  });
+
+  it('modifica el nombre del gato existente', () => {
+    // Accede a la edición del primer gato en la lista
+    cy.get('.fas.fa-paw').first().click();
+
+    // Cambia el nombre actual por uno nuevo
+    cy.get('input[name="name"].name')
+      .clear()
+      .type('Mittens');
+
+    // Guarda los cambios realizados
+    cy.get('.form_btn.add').contains('Save').click();
+  });
+
+  it('elimina un gato del refugio', () => {
+    // Entra a la edición del primer gato disponible
+    cy.get('.fas.fa-paw').first().click();
+
+    // Ejecuta la acción de eliminar
+    cy.get('.form_btn.delete').click();
+  });
+
+});
