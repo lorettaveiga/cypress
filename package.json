@@ -1,0 +1,13 @@
+{
+    "name": "qa-cypress-main",
+    "version": "1.0.0",
+    "description": "Cypress test project for banking application",
+    "main": "index.js",
+    "scripts": {
+      "test": "cypress run",
+      "cypress:open": "cypress open"
+    },
+    "dependencies": {
+      "cypress": "^13.6.0"
+    }
+  }
